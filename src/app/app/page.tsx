@@ -15,6 +15,7 @@ import { PageHeader } from "@/components/app/page-header";
 import { StatCard } from "@/components/app/stat-card";
 import { Button } from "@/components/ui/button";
 import { LevelBadge } from "@/components/level-badge";
+import { WelcomeCard } from "@/components/app/welcome-card";
 import type { LevelCode } from "@/lib/levels";
 
 export default async function DashboardPage() {
@@ -164,6 +165,8 @@ async function StudentDashboard({ studentId }: { studentId: string }) {
   const paid = lastPayment.data?.status ?? "verificado";
 
   return (
+   <>
+    <WelcomeCard />
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <div className="flex flex-col gap-3 rounded-2xl border bg-card p-5 shadow-sm">
         <span className="text-sm font-medium text-muted-foreground">
@@ -199,6 +202,7 @@ async function StudentDashboard({ studentId }: { studentId: string }) {
         tone="peach"
       />
     </div>
+   </>
   );
 }
 

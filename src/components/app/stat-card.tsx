@@ -27,7 +27,7 @@ export function StatCard({
   };
 
   const inner = (
-    <div className="flex h-full flex-col gap-3 rounded-2xl border bg-card p-5 shadow-sm transition-shadow hover:shadow-md">
+    <div className="animate-rise flex h-full flex-col gap-3 rounded-2xl border bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-muted-foreground">
           {label}

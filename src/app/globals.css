@@ -183,9 +183,66 @@
   .text-balance {
     text-wrap: balance;
   }
+  /* Animated rainbow-pastel gradient text for hero highlights */
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--primary),
+      var(--brand-leaf),
+      var(--brand-rose),
+      var(--primary)
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-pan 6s ease-in-out infinite;
+  }
   /* Slim, themed scrollbars for the classroom + content panes */
   .scroll-slim {
     scrollbar-width: thin;
     scrollbar-color: color-mix(in oklch, var(--muted-foreground) 40%, transparent) transparent;
   }
+  .animate-float { animation: float-y 6s ease-in-out infinite; }
+  .animate-sway { animation: sway 7s ease-in-out infinite; transform-origin: 50% 90%; }
+  .animate-blob { animation: blob 18s ease-in-out infinite; }
+  .animate-twinkle { animation: twinkle 3.5s ease-in-out infinite; }
+  .animate-rise { animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .pause-soft { animation-play-state: running; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4%, -3%) scale(1.08); }
+  66% { transform: translate(-3%, 4%) scale(0.95); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes drift {
+  0% { transform: translateY(-8%) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--petal-opacity, 0.7); }
+  100% { transform: translateY(112vh) translateX(var(--petal-drift, 40px)) rotate(var(--petal-spin, 220deg)); opacity: 0; }
+}
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-sway, .animate-blob, .animate-twinkle,
+  .animate-rise, .text-gradient { animation: none !important; }
 }

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s · Bloom English",
   },
   description:
-    "El campus de inglés de Ms. Pau & Ms. Jime — clases personalizadas, material interactivo y seguimiento de progreso de A1 a C1.",
+    "Bloom English — el campus para aprender inglés a tu ritmo: clases en vivo, material interactivo y seguimiento de progreso de A1 a C1, FCE y fonética.",
 };
 
 export default async function RootLayout({
