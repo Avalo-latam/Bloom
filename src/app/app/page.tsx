@@ -168,7 +168,7 @@ async function StudentDashboard({ studentId }: { studentId: string }) {
    <>
     <WelcomeCard />
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div className="flex flex-col gap-3 rounded-2xl border bg-card p-5 shadow-sm">
+      <div className="flex flex-col gap-3 rounded-2xl glass-card p-5 shadow-sm">
         <span className="text-sm font-medium text-muted-foreground">
           {t("currentLevel")}
         </span>

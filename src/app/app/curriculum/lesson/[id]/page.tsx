@@ -58,7 +58,7 @@ export default async function LessonPage({
         </Link>
       </Button>
 
-      <div className="flex flex-col gap-4 rounded-2xl border bg-card p-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-2xl glass-card p-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
           {level && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -113,7 +113,7 @@ export default async function LessonPage({
                   >
                     <Icon className="size-3.5 text-foreground/70" />
                   </span>
-                  <div className="rounded-xl border bg-card p-4">
+                  <div className="rounded-xl glass-card p-4">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold">{block.title}</h3>
                       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">

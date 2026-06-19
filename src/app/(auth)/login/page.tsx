@@ -22,7 +22,9 @@ export default async function LoginPage() {
         <BloomLogo />
         <div>
           <h2 className="max-w-md text-balance font-heading text-3xl font-extrabold leading-tight">
-            {t("heroTitle")}
+            {t("heroTitleA")}{" "}
+            <span className="text-gradient">{t("heroTitleHi")}</span>{" "}
+            {t("heroTitleB")}
           </h2>
           <p className="mt-3 max-w-sm text-muted-foreground">{tb("tagline")}</p>
           <div className="mt-8 flex flex-wrap gap-2">

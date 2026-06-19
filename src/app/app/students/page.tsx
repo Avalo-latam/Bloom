@@ -68,7 +68,7 @@ export default async function StudentsPage() {
         />
       </PageHeader>
 
-      <div className="overflow-hidden rounded-2xl border bg-card">
+      <div className="overflow-hidden rounded-2xl glass-card">
         <Table>
           <TableHeader>
             <TableRow>
@@ -142,7 +142,7 @@ export default async function StudentsPage() {
             {(teachers ?? []).map((tt) => (
               <div
                 key={tt.id}
-                className="rounded-xl border bg-card px-4 py-3 text-sm"
+                className="rounded-xl glass-card px-4 py-3 text-sm"
               >
                 <div className="font-medium">{tt.full_name || "—"}</div>
                 <div className="text-xs text-muted-foreground">{tt.email}</div>

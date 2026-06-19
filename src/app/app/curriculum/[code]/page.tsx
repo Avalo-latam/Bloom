@@ -109,7 +109,7 @@ export default async function LevelPage({
               </span>
               {unit.title}
             </h2>
-            <div className="overflow-hidden rounded-2xl border bg-card">
+            <div className="overflow-hidden rounded-2xl glass-card">
               {(lessonsByUnit.get(unit.id) ?? []).map((lesson, idx, arr) => {
                 const access = releasedToMe.get(lesson.id);
                 const released = isStaff ? true : !!access;

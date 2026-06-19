@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { NotificationsBell } from "@/components/app/notifications-bell";
 import { getProfile } from "@/lib/auth";
+import { AmbientBackground } from "@/components/brand/ambient-background";
 
 export default async function AppLayout({
   children,
@@ -18,9 +19,10 @@ export default async function AppLayout({
   const name = profile.full_name || profile.email || "Bloom";
 
   return (
-    <div className="flex min-h-full">
+    <div className="relative flex min-h-full">
+      <AmbientBackground />
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col gap-6 border-r border-sidebar-border bg-sidebar p-4 lg:flex">
+      <aside className="glass-panel sticky top-0 hidden h-screen w-64 shrink-0 flex-col gap-6 border-r border-sidebar-border/60 p-4 lg:flex">
         <BloomLogo className="px-2 pt-1" />
         <NavLinks role={profile.role} />
         <div className="mt-auto px-2 text-xs text-muted-foreground">
@@ -30,7 +32,7 @@ export default async function AppLayout({
 
       {/* Main column */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-16 items-center gap-2 border-b border-border bg-background/80 px-4 backdrop-blur">
+        <header className="glass-panel sticky top-0 z-20 flex h-16 items-center gap-2 border-b border-border/50 px-4">
           <MobileNav role={profile.role} />
           <div className="flex-1" />
           <LocaleSwitcher />

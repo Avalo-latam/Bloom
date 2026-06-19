@@ -49,7 +49,7 @@ export default async function CurriculumPage() {
       <Link
         href={`/app/curriculum/${level.code}`}
         className={cn(
-          "group relative flex flex-col gap-4 overflow-hidden rounded-2xl border bg-card p-5 shadow-sm transition-all hover:shadow-md",
+          "group relative flex flex-col gap-4 overflow-hidden rounded-2xl glass-card p-5 shadow-sm transition-all hover:shadow-md",
           mine && "ring-2 ring-primary",
         )}
       >

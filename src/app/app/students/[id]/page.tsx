@@ -56,7 +56,7 @@ export default async function StudentDetailPage({
         </Link>
       </Button>
 
-      <div className="flex flex-col gap-4 rounded-2xl border bg-card p-6 sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-4 rounded-2xl glass-card p-6 sm:flex-row sm:items-center">
         <Avatar className="size-16 border">
           <AvatarFallback className="bg-primary/10 text-lg font-semibold text-primary">
             {initials}
@@ -91,7 +91,7 @@ export default async function StudentDetailPage({
         </div>
       </div>
 
-      <section className="mt-6 rounded-2xl border bg-card p-6">
+      <section className="mt-6 rounded-2xl glass-card p-6">
         <h2 className="mb-3 font-heading text-lg font-semibold">Notas</h2>
         <form action={updateStudentNotes} className="space-y-3">
           <input type="hidden" name="studentId" value={student.id} />

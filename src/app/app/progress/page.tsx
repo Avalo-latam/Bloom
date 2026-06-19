@@ -92,7 +92,7 @@ export default async function ProgressPage() {
           { v: released, l: t("released") },
           { v: `${pct}%`, l: t("completion") },
         ].map((s) => (
-          <div key={s.l} className="rounded-2xl border bg-card p-4 text-center">
+          <div key={s.l} className="rounded-2xl glass-card p-4 text-center">
             <div className="font-heading text-2xl font-extrabold text-primary">
               {s.v}
             </div>
@@ -106,7 +106,7 @@ export default async function ProgressPage() {
         <h2 className="mb-3 font-heading text-lg font-semibold">{t("byUnit")}</h2>
         <div className="space-y-3">
           {unitRows.map((u) => (
-            <div key={u.id} className="rounded-2xl border bg-card p-4">
+            <div key={u.id} className="rounded-2xl glass-card p-4">
               <div className="mb-2 flex items-center justify-between text-sm">
                 <span className="font-medium">{u.title}</span>
                 <span className="text-muted-foreground">
