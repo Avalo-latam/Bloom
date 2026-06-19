@@ -3,6 +3,8 @@ import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/app/page-header";
 import { GrowthGarden } from "@/components/brand/illustrations";
+import { AchievementBadge } from "@/components/brand/badges";
+import { computeAchievements } from "@/lib/achievements";
 import { LevelBadge } from "@/components/level-badge";
 import { Progress } from "@/components/ui/progress";
 import { Reveal } from "@/components/motion";
@@ -64,6 +66,14 @@ export default async function ProgressPage() {
     const done = inUnit.filter((l) => completedIds.has(l.id)).length;
     return { id: u.id, title: u.title, total: inUnit.length, done };
   });
+  const completedUnits = unitRows.filter((u) => u.total > 0 && u.done === u.total).length;
+
+  const ta = await getTranslations("ach");
+  const achievements = computeAchievements({
+    completedLessons: completed,
+    completedUnits,
+    totalLessons: total,
+  });
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -100,6 +110,23 @@ export default async function ProgressPage() {
           </div>
         ))}
       </div>
+
+      {/* Achievements */}
+      <section className="mt-8">
+        <h2 className="mb-3 font-heading text-lg font-semibold">{ta("title")}</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {achievements.map((a) => (
+            <div
+              key={a.id}
+              className="glass-card flex flex-col items-center gap-1 rounded-2xl p-4 text-center"
+            >
+              <AchievementBadge variant={a.id} earned={a.earned} />
+              <span className="mt-1 text-sm font-semibold">{ta(a.labelKey)}</span>
+              <span className="text-xs text-muted-foreground">{ta(a.descKey)}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Per-unit */}
       <section className="mt-8">

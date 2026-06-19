@@ -244,5 +244,20 @@
     "interactive": "Actividad interactiva",
     "watchVideo": "Mirá el video",
     "playKahoot": "Jugar en Kahoot"
+  },
+  "ach": {
+    "title": "Logros",
+    "firstT": "Primera flor",
+    "firstD": "Completaste tu primera clase",
+    "gardenT": "Jardín en camino",
+    "gardenD": "5 clases completadas",
+    "unitT": "Unidad florecida",
+    "unitD": "Completaste una unidad entera",
+    "scholarT": "Estudiante estrella",
+    "scholarD": "10 clases completadas",
+    "levelT": "Nivel completo",
+    "levelD": "Completaste todo el nivel",
+    "earned": "Conseguido",
+    "locked": "Bloqueado"
   }
 }

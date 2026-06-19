@@ -244,5 +244,20 @@
     "interactive": "Interactive activity",
     "watchVideo": "Watch the video",
     "playKahoot": "Play on Kahoot"
+  },
+  "ach": {
+    "title": "Achievements",
+    "firstT": "First bloom",
+    "firstD": "Completed your first lesson",
+    "gardenT": "Garden growing",
+    "gardenD": "5 lessons completed",
+    "unitT": "Unit in bloom",
+    "unitD": "Completed a whole unit",
+    "scholarT": "Star student",
+    "scholarD": "10 lessons completed",
+    "levelT": "Level complete",
+    "levelD": "Completed the whole level",
+    "earned": "Earned",
+    "locked": "Locked"
   }
 }
