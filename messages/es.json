@@ -228,5 +228,21 @@
     "byUnit": "Avance por unidad",
     "of": "de",
     "noLevel": "Todavía no tenés un nivel asignado. Tu profe lo va a configurar pronto."
+  },
+  "quiz": {
+    "of": "de",
+    "check": "Comprobar",
+    "next": "Siguiente",
+    "finish": "Terminar",
+    "retry": "Intentar de nuevo",
+    "great": "¡Excelente! Estás floreciendo 🌸",
+    "good": "¡Muy bien! Vas por buen camino 🌱",
+    "keepPracticing": "¡Seguí practicando, ya casi! 💪",
+    "startQuiz": "Empezar quiz",
+    "quiz": "Quiz",
+    "game": "Juego",
+    "interactive": "Actividad interactiva",
+    "watchVideo": "Mirá el video",
+    "playKahoot": "Jugar en Kahoot"
   }
 }

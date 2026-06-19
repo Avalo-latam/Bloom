@@ -7,6 +7,9 @@ import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
 import { LevelBadge } from "@/components/level-badge";
 import { BLOCK_META, type BlockKind, type BlockContent } from "@/lib/blocks";
+import { YouTubeEmbed } from "@/components/embeds/youtube";
+import { QuizLauncher } from "@/components/quiz/quiz-launcher";
+import type { Quiz } from "@/lib/quiz";
 import type { LevelCode } from "@/lib/levels";
 import { cn } from "@/lib/utils";
 
@@ -45,6 +48,32 @@ export default async function LessonPage({
     .eq("lesson_id", id)
     .order("sort_order");
 
+  // Load quizzes referenced by blocks (only when the lesson is unlocked).
+  const quizIds = (blocks ?? [])
+    .map((b) => (b.content as BlockContent)?.quizId)
+    .filter((x): x is string => !!x);
+  const quizMap = new Map<string, Quiz>();
+  if (quizIds.length && !locked) {
+    const { data: qs } = await supabase
+      .from("quizzes")
+      .select(
+        "id, title, description, questions:quiz_questions(id, kind, prompt, media_url, data, explanation, points, sort_order)",
+      )
+      .in("id", quizIds);
+    (qs ?? []).forEach((quiz) => {
+      const questions = [...((quiz.questions as Quiz["questions"]) ?? [])].sort(
+        (a, b) => a.sort_order - b.sort_order,
+      );
+      quizMap.set(quiz.id, {
+        id: quiz.id,
+        title: quiz.title,
+        description: quiz.description,
+        questions,
+      });
+    });
+  }
+
+  const tq = await getTranslations("quiz");
   const level = lesson.level as { code: LevelCode; subtitle: string } | null;
   const unit = lesson.unit as { title: string } | null;
   const totalMin = (blocks ?? []).reduce((s, b) => s + b.duration_min, 0);
@@ -126,7 +155,25 @@ export default async function LessonPage({
                         {content.guide}
                       </p>
                     )}
+                    {content.videoUrl && (
+                      <YouTubeEmbed url={content.videoUrl} className="mt-3" />
+                    )}
+                    {content.kahootUrl && (
+                      <a
+                        href={content.kahootUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-2 rounded-xl bg-brand-lemon/60 px-4 py-2 text-sm font-semibold text-foreground/80 transition-transform hover:-translate-y-0.5"
+                      >
+                        🎮 {tq("playKahoot")}
+                      </a>
+                    )}
                   </div>
+                  {content.quizId && quizMap.get(content.quizId) && (
+                    <div className="mt-3">
+                      <QuizLauncher quiz={quizMap.get(content.quizId)!} />
+                    </div>
+                  )}
                 </li>
               );
             })}

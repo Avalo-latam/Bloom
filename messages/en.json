@@ -228,5 +228,21 @@
     "byUnit": "Progress by unit",
     "of": "of",
     "noLevel": "You don't have a level yet. Your teacher will set it up soon."
+  },
+  "quiz": {
+    "of": "of",
+    "check": "Check",
+    "next": "Next",
+    "finish": "Finish",
+    "retry": "Try again",
+    "great": "Awesome! You're blooming 🌸",
+    "good": "Nice! You're on track 🌱",
+    "keepPracticing": "Keep practicing, almost there! 💪",
+    "startQuiz": "Start quiz",
+    "quiz": "Quiz",
+    "game": "Game",
+    "interactive": "Interactive activity",
+    "watchVideo": "Watch the video",
+    "playKahoot": "Play on Kahoot"
   }
 }
