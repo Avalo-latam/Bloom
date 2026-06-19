@@ -1,23 +1,24 @@
 import {
-  LayoutDashboard,
-  BookOpen,
-  CalendarDays,
-  Users,
-  ClipboardList,
-  FileCheck2,
-  GraduationCap,
-  LineChart,
-  Wallet,
-  Settings,
-  type LucideIcon,
-} from "lucide-react";
+  IcHome,
+  IcStudents,
+  IcBook,
+  IcCalendar,
+  IcHomework,
+  IcExam,
+  IcAward,
+  IcProgress,
+  IcWallet,
+  IcSettings,
+} from "@/components/brand/icons";
 import type { UserRole } from "@/lib/roles";
+
+export type BloomIcon = (props: { className?: string }) => React.ReactElement;
 
 export type NavItem = {
   href: string;
   /** translation key under the "nav" namespace */
   labelKey: string;
-  icon: LucideIcon;
+  icon: BloomIcon;
   roles: UserRole[];
 };
 
@@ -25,16 +26,16 @@ const ALL: UserRole[] = ["owner", "teacher", "student"];
 const STAFF: UserRole[] = ["owner", "teacher"];
 
 export const NAV_ITEMS: NavItem[] = [
-  { href: "/app", labelKey: "dashboard", icon: LayoutDashboard, roles: ALL },
-  { href: "/app/students", labelKey: "students", icon: Users, roles: STAFF },
-  { href: "/app/curriculum", labelKey: "curriculum", icon: BookOpen, roles: ALL },
-  { href: "/app/schedule", labelKey: "schedule", icon: CalendarDays, roles: ALL },
-  { href: "/app/homework", labelKey: "homework", icon: ClipboardList, roles: ALL },
-  { href: "/app/exams", labelKey: "exams", icon: FileCheck2, roles: ALL },
-  { href: "/app/grades", labelKey: "grades", icon: GraduationCap, roles: ALL },
-  { href: "/app/progress", labelKey: "progress", icon: LineChart, roles: ["student"] },
-  { href: "/app/payments", labelKey: "payments", icon: Wallet, roles: ALL },
-  { href: "/app/settings", labelKey: "settings", icon: Settings, roles: ["owner"] },
+  { href: "/app", labelKey: "dashboard", icon: IcHome, roles: ALL },
+  { href: "/app/students", labelKey: "students", icon: IcStudents, roles: STAFF },
+  { href: "/app/curriculum", labelKey: "curriculum", icon: IcBook, roles: ALL },
+  { href: "/app/schedule", labelKey: "schedule", icon: IcCalendar, roles: ALL },
+  { href: "/app/homework", labelKey: "homework", icon: IcHomework, roles: ALL },
+  { href: "/app/exams", labelKey: "exams", icon: IcExam, roles: ALL },
+  { href: "/app/grades", labelKey: "grades", icon: IcAward, roles: ALL },
+  { href: "/app/progress", labelKey: "progress", icon: IcProgress, roles: ["student"] },
+  { href: "/app/payments", labelKey: "payments", icon: IcWallet, roles: ALL },
+  { href: "/app/settings", labelKey: "settings", icon: IcSettings, roles: ["owner"] },
 ];
 
 export function navForRole(role: UserRole): NavItem[] {

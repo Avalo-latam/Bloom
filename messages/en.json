@@ -214,5 +214,19 @@
     "title": "Hi! Welcome aboard 🌱",
     "body": "I'm Ms. Jime and I'm so happy to have you here. This campus is your place to learn English calmly and joyfully: you'll find each class's material, games, videos and your feedback, all in one place. We'll go step by step, at your own pace, and I promise you'll surprise yourself with how much you can achieve. I'm always on your side. Let's bloom! 💛",
     "signature": "— Ms. Jime"
+  },
+  "progress": {
+    "title": "My progress",
+    "subtitle": "Watch your garden bloom as you move forward.",
+    "garden": "My garden",
+    "completed": "Lessons completed",
+    "released": "Lessons available",
+    "completion": "Level progress",
+    "currentLevel": "Current level",
+    "keepGrowing": "Keep it up, you're blooming! 🌸",
+    "start": "Your garden is ready to grow. Complete your first lesson!",
+    "byUnit": "Progress by unit",
+    "of": "of",
+    "noLevel": "You don't have a level yet. Your teacher will set it up soon."
   }
 }

@@ -1,14 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import {
-  Users,
-  GraduationCap,
-  Wallet,
-  ClipboardList,
-  CalendarDays,
-  BookOpen,
-  Plus,
-} from "lucide-react";
+  IcStudents as Users,
+  IcAward as GraduationCap,
+  IcWallet as Wallet,
+  IcHomework as ClipboardList,
+  IcCalendar as CalendarDays,
+  IcBook as BookOpen,
+  IcPlus as Plus,
+} from "@/components/brand/icons";
 import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/app/page-header";

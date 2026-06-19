@@ -214,5 +214,19 @@
     "title": "¡Hola! Te doy la bienvenida 🌱",
     "body": "Soy Ms. Jime y me hace muy feliz tenerte acá. Este campus es tu lugar para aprender inglés con calma y con ganas: vas a encontrar el material de cada clase, juegos, videos y tus devoluciones, todo en un solo lugar. Vamos a ir paso a paso, a tu ritmo, y te prometo que vas a sorprenderte de todo lo que podés lograr. Cualquier cosa, estoy de tu lado. ¡A florecer! 💛",
     "signature": "— Ms. Jime"
+  },
+  "progress": {
+    "title": "Mi progreso",
+    "subtitle": "Mirá cómo florece tu jardín a medida que avanzás.",
+    "garden": "Mi jardín",
+    "completed": "Clases completadas",
+    "released": "Clases disponibles",
+    "completion": "Avance del nivel",
+    "currentLevel": "Nivel actual",
+    "keepGrowing": "¡Seguí así, estás floreciendo! 🌸",
+    "start": "Tu jardín está listo para crecer. ¡Completá tu primera clase!",
+    "byUnit": "Avance por unidad",
+    "of": "de",
+    "noLevel": "Todavía no tenés un nivel asignado. Tu profe lo va a configurar pronto."
   }
 }

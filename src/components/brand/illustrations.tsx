@@ -123,6 +123,86 @@ export function ArtFeedback({ className }: IconProps) {
   );
 }
 
+/** "My garden" — progress as a growing, blooming garden (bespoke). */
+export function GrowthGarden({
+  completed,
+  total,
+  className,
+}: {
+  completed: number;
+  total: number;
+  className?: string;
+}) {
+  const slots = Math.min(Math.max(total, 1), 12);
+  const bloomed = Math.round((Math.min(completed, total) / Math.max(total, 1)) * slots);
+  const colors = [
+    "var(--brand-rose)",
+    "var(--brand-lila)",
+    "var(--brand-peach)",
+    "var(--brand-lemon)",
+    "var(--brand-sky)",
+  ];
+  const W = 360;
+  const gap = W / (slots + 1);
+
+  return (
+    <svg viewBox="0 0 360 150" fill="none" aria-hidden className={cn("w-full", className)}>
+      {/* sun */}
+      <circle cx="324" cy="30" r="14" fill="var(--brand-lemon)" />
+      <g stroke="var(--brand-lemon)" strokeWidth="2.4" strokeLinecap="round">
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
+          <path key={a} d="M324 8v5" transform={`rotate(${a} 324 30)`} />
+        ))}
+      </g>
+
+      {/* ground */}
+      <path d="M0 124c60-10 120-10 180-8s120 0 180-6v40H0v-26Z" fill="var(--brand-leaf)" opacity="0.25" />
+      <path d="M0 130c60-8 120-8 180-6s120 0 180-5" stroke="var(--brand-leaf)" strokeWidth="2" opacity="0.5" />
+
+      {Array.from({ length: slots }).map((_, i) => {
+        const x = gap * (i + 1);
+        const isBloom = i < bloomed;
+        const color = colors[i % colors.length];
+        const delay = `${(i % 5) * 0.4}s`;
+        return (
+          <g key={i}>
+            {/* stem */}
+            <path
+              d={`M${x} 128V${isBloom ? 86 : 108}`}
+              stroke="var(--brand-leaf)"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+            />
+            {/* leaf */}
+            <path
+              d={`M${x} ${isBloom ? 108 : 116}c-6-3-11-1.5-13 2 4 2.5 9 1.5 13-2Z`}
+              fill="var(--brand-mint)"
+            />
+            {isBloom ? (
+              <g className="animate-sway" style={{ transformOrigin: `${x}px 86px`, animationDelay: delay }}>
+                {[0, 72, 144, 216, 288].map((a) => (
+                  <ellipse
+                    key={a}
+                    cx={x}
+                    cy={74}
+                    rx="4.5"
+                    ry="8"
+                    fill={color}
+                    transform={`rotate(${a} ${x} 84)`}
+                  />
+                ))}
+                <circle cx={x} cy="84" r="4.5" fill="var(--brand-lemon)" />
+              </g>
+            ) : (
+              <circle cx={x} cy="104" r="4" fill="var(--brand-mint)" opacity="0.7" />
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 /** Friendly bespoke teacher avatar (not a stock icon). */
 export function TeacherAvatar({ className }: IconProps) {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { type LucideIcon } from "lucide-react";
+import type { BloomIcon } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
 export function StatCard({
@@ -12,7 +12,7 @@ export function StatCard({
 }: {
   label: string;
   value: React.ReactNode;
-  icon: LucideIcon;
+  icon: BloomIcon;
   hint?: string;
   href?: string;
   tone?: "primary" | "mint" | "peach" | "lila" | "sky" | "rose";

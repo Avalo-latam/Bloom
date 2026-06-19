@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { LogOut, User2 } from "lucide-react";
+import { IcSignOut } from "@/components/brand/icons";
 import { signOut } from "@/app/(auth)/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -38,7 +38,7 @@ export function UserMenu({
         <Avatar className="size-9 border">
           {avatarUrl && <AvatarImage src={avatarUrl} alt={name} />}
           <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
-            {initials || <User2 className="size-4" />}
+            {initials || "🌱"}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -56,7 +56,7 @@ export function UserMenu({
         <form action={signOut}>
           <button type="submit" className="w-full">
             <DropdownMenuItem className="cursor-pointer text-destructive focus:text-destructive">
-              <LogOut className="size-4" />
+              <IcSignOut className="size-4" />
               {t("signOut")}
             </DropdownMenuItem>
           </button>
