@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Bloom brand pastels (level badges, accents, illustrations) */
+  --color-brand-sky: var(--brand-sky);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-peach: var(--brand-peach);
+  --color-brand-lila: var(--brand-lila);
+  --color-brand-lemon: var(--brand-lemon);
+  --color-brand-rose: var(--brand-rose);
+  --color-brand-leaf: var(--brand-leaf);
+}
+
+:root {
+  /* Warm cream background, soft violet-slate ink */
+  --background: oklch(0.985 0.006 95);
+  --foreground: oklch(0.3 0.025 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.3 0.025 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.3 0.025 285);
+  /* Periwinkle / lavender-blue primary */
+  --primary: oklch(0.62 0.142 278);
+  --primary-foreground: oklch(0.99 0.005 280);
+  /* Soft lila secondary */
+  --secondary: oklch(0.95 0.03 320);
+  --secondary-foreground: oklch(0.4 0.06 305);
+  --muted: oklch(0.965 0.012 285);
+  --muted-foreground: oklch(0.55 0.03 287);
+  /* Mint accent */
+  --accent: oklch(0.93 0.05 175);
+  --accent-foreground: oklch(0.36 0.05 195);
+  --destructive: oklch(0.605 0.21 22);
+  --border: oklch(0.915 0.012 290);
+  --input: oklch(0.915 0.012 290);
+  --ring: oklch(0.62 0.142 278);
+
+  /* Brand pastels */
+  --brand-sky: oklch(0.86 0.07 232);
+  --brand-mint: oklch(0.87 0.075 165);
+  --brand-peach: oklch(0.87 0.075 52);
+  --brand-lila: oklch(0.85 0.075 312);
+  --brand-lemon: oklch(0.91 0.08 98);
+  --brand-rose: oklch(0.86 0.07 8);
+  --brand-leaf: oklch(0.7 0.13 150);
+
+  --chart-1: var(--brand-sky);
+  --chart-2: var(--brand-mint);
+  --chart-3: var(--brand-peach);
+  --chart-4: var(--brand-lila);
+  --chart-5: var(--brand-lemon);
+  --radius: 0.85rem;
+
+  --sidebar: oklch(0.975 0.01 290);
+  --sidebar-foreground: oklch(0.3 0.025 285);
+  --sidebar-primary: oklch(0.62 0.142 278);
+  --sidebar-primary-foreground: oklch(0.99 0.005 280);
+  --sidebar-accent: oklch(0.93 0.03 300);
+  --sidebar-accent-foreground: oklch(0.4 0.06 305);
+  --sidebar-border: oklch(0.915 0.012 290);
+  --sidebar-ring: oklch(0.62 0.142 278);
+}
+
+.dark {
+  /* Deep violet-slate */
+  --background: oklch(0.205 0.018 285);
+  --foreground: oklch(0.95 0.008 285);
+  --card: oklch(0.25 0.02 285);
+  --card-foreground: oklch(0.95 0.008 285);
+  --popover: oklch(0.25 0.02 285);
+  --popover-foreground: oklch(0.95 0.008 285);
+  --primary: oklch(0.74 0.13 280);
+  --primary-foreground: oklch(0.21 0.02 285);
+  --secondary: oklch(0.31 0.03 305);
+  --secondary-foreground: oklch(0.93 0.02 305);
+  --muted: oklch(0.3 0.02 287);
+  --muted-foreground: oklch(0.72 0.02 287);
+  --accent: oklch(0.34 0.04 190);
+  --accent-foreground: oklch(0.9 0.04 180);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.74 0.13 280);
+
+  --brand-sky: oklch(0.7 0.1 232);
+  --brand-mint: oklch(0.72 0.1 165);
+  --brand-peach: oklch(0.74 0.1 52);
+  --brand-lila: oklch(0.72 0.1 312);
+  --brand-lemon: oklch(0.8 0.1 98);
+  --brand-rose: oklch(0.72 0.1 8);
+  --brand-leaf: oklch(0.72 0.13 150);
+
+  --chart-1: var(--brand-sky);
+  --chart-2: var(--brand-mint);
+  --chart-3: var(--brand-peach);
+  --chart-4: var(--brand-lila);
+  --chart-5: var(--brand-lemon);
+
+  --sidebar: oklch(0.235 0.02 285);
+  --sidebar-foreground: oklch(0.95 0.008 285);
+  --sidebar-primary: oklch(0.74 0.13 280);
+  --sidebar-primary-foreground: oklch(0.21 0.02 285);
+  --sidebar-accent: oklch(0.31 0.03 305);
+  --sidebar-accent-foreground: oklch(0.93 0.02 305);
+  --sidebar-border: oklch(1 0 0 / 11%);
+  --sidebar-ring: oklch(0.74 0.13 280);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  html {
+    @apply antialiased font-sans;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-heading tracking-tight;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
+  }
+}
+
+@layer utilities {
+  /* Soft pastel "bloom" backdrop used on auth / marketing surfaces */
+  .bg-bloom {
+    background-image:
+      radial-gradient(40rem 40rem at 12% -8%, color-mix(in oklch, var(--brand-lila) 45%, transparent), transparent 60%),
+      radial-gradient(38rem 38rem at 92% 0%, color-mix(in oklch, var(--brand-sky) 40%, transparent), transparent 58%),
+      radial-gradient(44rem 44rem at 78% 108%, color-mix(in oklch, var(--brand-mint) 38%, transparent), transparent 60%);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Slim, themed scrollbars for the classroom + content panes */
+  .scroll-slim {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--muted-foreground) 40%, transparent) transparent;
+  }
+}

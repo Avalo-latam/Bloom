@@ -1,0 +1,121 @@
+{
+  "brand": {
+    "name": "Bloom English",
+    "tagline": "Aprendé inglés, florecé a tu ritmo"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "saving": "Guardando…",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "continue": "Continuar",
+    "optional": "opcional",
+    "comingSoon": "Próximamente"
+  },
+  "theme": {
+    "toggle": "Cambiar tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "locale": {
+    "switch": "Idioma",
+    "es": "Español",
+    "en": "English"
+  },
+  "nav": {
+    "dashboard": "Inicio",
+    "curriculum": "Currículo",
+    "classroom": "Aula",
+    "schedule": "Agenda",
+    "students": "Alumnos",
+    "homework": "Tareas",
+    "exams": "Exámenes",
+    "grades": "Notas",
+    "progress": "Progreso",
+    "payments": "Pagos",
+    "settings": "Ajustes",
+    "signOut": "Cerrar sesión"
+  },
+  "roles": {
+    "owner": "Administración",
+    "teacher": "Profesora",
+    "student": "Alumno/a"
+  },
+  "dash": {
+    "greeting": "¡Hola, {name}! 🌱",
+    "subtitleOwner": "Resumen general del campus.",
+    "subtitleTeacher": "Tu día de un vistazo.",
+    "subtitleStudent": "Seguí aprendiendo a tu ritmo.",
+    "students": "Alumnos",
+    "teachers": "Profesoras",
+    "myStudents": "Mis alumnos",
+    "activeEnrollments": "Cursadas activas",
+    "todayClasses": "Clases de hoy",
+    "toGrade": "Por corregir",
+    "pendingPayments": "Pagos por verificar",
+    "nextClass": "Próxima clase",
+    "pendingHomework": "Tareas pendientes",
+    "currentLevel": "Tu nivel actual",
+    "paymentStatus": "Estado de pago",
+    "noClass": "Sin clases agendadas",
+    "noLevel": "Sin nivel asignado",
+    "upToDate": "Al día",
+    "viewAll": "Ver todo",
+    "quickActions": "Accesos rápidos",
+    "addStudent": "Agregar alumno",
+    "scheduleClass": "Agendar clase",
+    "openCurriculum": "Abrir currículo",
+    "reviewPayments": "Revisar pagos"
+  },
+  "landing": {
+    "loginCta": "Ingresar",
+    "heroTitle": "El campus de inglés de Ms. Pau & Ms. Jime",
+    "heroSubtitle": "Clases personalizadas, individuales y grupales, con material interactivo y seguimiento real de tu progreso —de A1 a C1, preparación para el FCE y práctica de fonética.",
+    "heroPrimary": "Entrar al campus",
+    "heroSecondary": "Conocé los niveles",
+    "feature1Title": "Currículo curado por nivel",
+    "feature1Body": "Clases de 1 hora cronometradas y coreografeadas, paso a paso, de A1 a C1.",
+    "feature2Title": "Contenido interactivo",
+    "feature2Body": "Quizzes, videos, juegos y práctica de pronunciación dentro de cada clase.",
+    "feature3Title": "Tu progreso, claro",
+    "feature3Body": "Tareas, notas, devoluciones y cuándo estás lista/o para subir de nivel."
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signUp": "Crear cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "fullName": "Nombre y apellido",
+    "signInCta": "Ingresar",
+    "signUpCta": "Crear cuenta",
+    "magicLink": "Enviarme un enlace de acceso",
+    "magicLinkSent": "Te enviamos un enlace de acceso a tu correo.",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tenés cuenta?",
+    "hasAccount": "¿Ya tenés cuenta?",
+    "orContinueWith": "o",
+    "checkEmail": "Revisá tu correo",
+    "signOutDone": "Cerraste sesión",
+    "errorInvalid": "Correo o contraseña incorrectos.",
+    "errorGeneric": "Algo salió mal. Probá de nuevo."
+  },
+  "levels": {
+    "A1": "A1 · Principiante",
+    "A2": "A2 · Elemental",
+    "B1": "B1 · Intermedio",
+    "B2": "B2 · Intermedio alto",
+    "C1": "C1 · Avanzado",
+    "FCE": "Preparación FCE",
+    "PHONETICS": "Fonética"
+  }
+}

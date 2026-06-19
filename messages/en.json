@@ -1,0 +1,121 @@
+{
+  "brand": {
+    "name": "Bloom English",
+    "tagline": "Learn English, bloom at your own pace"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "continue": "Continue",
+    "optional": "optional",
+    "comingSoon": "Coming soon"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "switch": "Language",
+    "es": "Español",
+    "en": "English"
+  },
+  "nav": {
+    "dashboard": "Home",
+    "curriculum": "Curriculum",
+    "classroom": "Classroom",
+    "schedule": "Schedule",
+    "students": "Students",
+    "homework": "Homework",
+    "exams": "Exams",
+    "grades": "Grades",
+    "progress": "Progress",
+    "payments": "Payments",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "roles": {
+    "owner": "Admin",
+    "teacher": "Teacher",
+    "student": "Student"
+  },
+  "dash": {
+    "greeting": "Hi, {name}! 🌱",
+    "subtitleOwner": "Campus overview.",
+    "subtitleTeacher": "Your day at a glance.",
+    "subtitleStudent": "Keep learning at your own pace.",
+    "students": "Students",
+    "teachers": "Teachers",
+    "myStudents": "My students",
+    "activeEnrollments": "Active enrollments",
+    "todayClasses": "Today's classes",
+    "toGrade": "To grade",
+    "pendingPayments": "Payments to verify",
+    "nextClass": "Next class",
+    "pendingHomework": "Pending homework",
+    "currentLevel": "Your current level",
+    "paymentStatus": "Payment status",
+    "noClass": "No classes scheduled",
+    "noLevel": "No level assigned",
+    "upToDate": "Up to date",
+    "viewAll": "View all",
+    "quickActions": "Quick actions",
+    "addStudent": "Add student",
+    "scheduleClass": "Schedule class",
+    "openCurriculum": "Open curriculum",
+    "reviewPayments": "Review payments"
+  },
+  "landing": {
+    "loginCta": "Log in",
+    "heroTitle": "Ms. Pau & Ms. Jime's English campus",
+    "heroSubtitle": "Personalized one-on-one and group classes, with interactive material and real progress tracking —from A1 to C1, FCE prep and phonetics practice.",
+    "heroPrimary": "Enter the campus",
+    "heroSecondary": "See the levels",
+    "feature1Title": "Curated curriculum by level",
+    "feature1Body": "Timed, choreographed 1-hour lessons, step by step, from A1 to C1.",
+    "feature2Title": "Interactive content",
+    "feature2Body": "Quizzes, videos, games and pronunciation practice inside every lesson.",
+    "feature3Title": "Your progress, made clear",
+    "feature3Body": "Homework, grades, feedback and when you're ready to level up."
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full name",
+    "signInCta": "Log in",
+    "signUpCta": "Create account",
+    "magicLink": "Email me a login link",
+    "magicLinkSent": "We've emailed you a login link.",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "orContinueWith": "or",
+    "checkEmail": "Check your email",
+    "signOutDone": "You've signed out",
+    "errorInvalid": "Wrong email or password.",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "levels": {
+    "A1": "A1 · Beginner",
+    "A2": "A2 · Elementary",
+    "B1": "B1 · Intermediate",
+    "B2": "B2 · Upper-intermediate",
+    "C1": "C1 · Advanced",
+    "FCE": "FCE Prep",
+    "PHONETICS": "Phonetics"
+  }
+}
