@@ -203,6 +203,7 @@ export type Database = {
           completed_at: string | null
           id: string
           level_id: string
+          plan: Database["public"]["Enums"]["enrollment_plan"]
           started_at: string
           status: Database["public"]["Enums"]["enrollment_status"]
           student_id: string
@@ -212,6 +213,7 @@ export type Database = {
           completed_at?: string | null
           id?: string
           level_id: string
+          plan?: Database["public"]["Enums"]["enrollment_plan"]
           started_at?: string
           status?: Database["public"]["Enums"]["enrollment_status"]
           student_id: string
@@ -221,6 +223,7 @@ export type Database = {
           completed_at?: string | null
           id?: string
           level_id?: string
+          plan?: Database["public"]["Enums"]["enrollment_plan"]
           started_at?: string
           status?: Database["public"]["Enums"]["enrollment_status"]
           student_id?: string
@@ -814,6 +817,7 @@ export type Database = {
       pricing: {
         Row: {
           alias: string
+          async_price: number
           currency: string
           group_min: number
           group_price: number
@@ -823,6 +827,7 @@ export type Database = {
         }
         Insert: {
           alias?: string
+          async_price?: number
           currency?: string
           group_min?: number
           group_price?: number
@@ -832,6 +837,7 @@ export type Database = {
         }
         Update: {
           alias?: string
+          async_price?: number
           currency?: string
           group_min?: number
           group_price?: number
@@ -1094,6 +1100,14 @@ export type Database = {
         Args: never
         Returns: Database["public"]["Enums"]["user_role"]
       }
+      async_unlock_next: {
+        Args: { p_lesson: string; p_student: string }
+        Returns: undefined
+      }
+      enable_async: {
+        Args: { p_level: string; p_student: string }
+        Returns: undefined
+      }
       is_owner: { Args: never; Returns: boolean }
       is_staff: { Args: never; Returns: boolean }
       lesson_released: { Args: { p_lesson: string }; Returns: boolean }
@@ -1112,6 +1126,7 @@ export type Database = {
         | "game"
         | "wrapup"
       class_kind: "individual" | "group"
+      enrollment_plan: "guided" | "async"
       enrollment_status: "active" | "paused" | "completed"
       exam_kind: "uploaded" | "quiz"
       level_code: "A1" | "A2" | "B1" | "B2" | "C1" | "FCE" | "PHONETICS"
@@ -1274,6 +1289,7 @@ export const Constants = {
         "wrapup",
       ],
       class_kind: ["individual", "group"],
+      enrollment_plan: ["guided", "async"],
       enrollment_status: ["active", "paused", "completed"],
       exam_kind: ["uploaded", "quiz"],
       level_code: ["A1", "A2", "B1", "B2", "C1", "FCE", "PHONETICS"],

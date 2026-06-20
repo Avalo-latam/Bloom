@@ -180,7 +180,13 @@
     "done": "Done",
     "errorExists": "An account with that email already exists.",
     "errorGeneric": "Couldn't create. Check the details.",
-    "open": "Open profile"
+    "open": "Open profile",
+    "planTitle": "Plan",
+    "planGuided": "Guided",
+    "planAsync": "Self-paced",
+    "planGuidedDesc": "Live classes 1×/week; teacher releases content.",
+    "planAsyncDesc": "Self-paced; modules unlock as they progress.",
+    "enableAsync": "Switch to self-paced plan"
   },
   "auth": {
     "signIn": "Sign in",
@@ -259,5 +265,28 @@
     "levelD": "Completed the whole level",
     "earned": "Earned",
     "locked": "Locked"
+  },
+  "plans": {
+    "title": "Choose your path",
+    "subtitle": "Two ways to bloom. You set the pace.",
+    "popular": "Most popular",
+    "guidedName": "Guided Plan",
+    "guidedPrice": "from $15,000",
+    "guidedPer": "per month",
+    "guidedTag": "With live classes",
+    "gP1": "Live class 1×/week (1 hour) on Zoom/Meet",
+    "gP2": "Personalized support from your teacher",
+    "gP3": "Material, homework and feedback",
+    "gP4": "Great if you want guidance and routine",
+    "asyncName": "Bloom at your own pace",
+    "asyncPrice": "$20,000",
+    "asyncPer": "per month",
+    "asyncTag": "100% self-paced",
+    "aP1": "Learn whenever you want, no fixed schedule",
+    "aP2": "Gamified content: quizzes, reading, speech and phonetics",
+    "aP3": "Modules unlock as you progress",
+    "aP4": "Personalized feedback from Jime on your work",
+    "aP5": "Track your progress with your garden and badges",
+    "cta": "I want this plan"
   }
 }

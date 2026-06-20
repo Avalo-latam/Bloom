@@ -127,6 +127,21 @@ export async function updateStudentNotes(formData: FormData) {
   revalidatePath(`/app/students/${studentId}`);
 }
 
+/** Enable the self-paced async plan for a student in a level (staff only). */
+export async function enableAsyncPlan(formData: FormData) {
+  const me = await getProfile();
+  if (me.role === "student") return;
+  const studentId = String(formData.get("studentId"));
+  const levelId = String(formData.get("levelId"));
+  if (!studentId || !levelId) return;
+  const supabase = await createClient();
+  await supabase.rpc("enable_async", {
+    p_student: studentId,
+    p_level: levelId,
+  });
+  revalidatePath(`/app/students/${studentId}`);
+}
+
 export async function setMemberActive(formData: FormData) {
   const me = await getProfile();
   if (me.role === "student") return;

@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
 import { requireStaff } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { updateStudentNotes } from "@/app/app/students/actions";
+import { updateStudentNotes, enableAsyncPlan } from "@/app/app/students/actions";
 import { LevelBadge } from "@/components/level-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,13 +33,16 @@ export default async function StudentDetailPage({
 
   const { data: enrollment } = await supabase
     .from("enrollments")
-    .select("level:levels(code, subtitle), status")
+    .select("level:levels(id, code, subtitle), status, plan")
     .eq("student_id", id)
     .eq("status", "active")
     .order("started_at", { ascending: false })
     .maybeSingle();
 
-  const level = enrollment?.level as { code: LevelCode; subtitle: string } | null;
+  const level = enrollment?.level as
+    | { id: string; code: LevelCode; subtitle: string }
+    | null;
+  const plan = enrollment?.plan ?? "guided";
   const initials = (student.full_name || student.email || "?")
     .split(" ")
     .map((p) => p[0])
@@ -91,7 +94,32 @@ export default async function StudentDetailPage({
         </div>
       </div>
 
-      <section className="mt-6 rounded-2xl glass-card p-6">
+      <section className="mt-6 glass-card rounded-2xl p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="font-heading text-lg font-semibold">
+              {t("planTitle")}
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {plan === "async" ? t("planAsyncDesc") : t("planGuidedDesc")}
+            </p>
+          </div>
+          <Badge variant={plan === "async" ? "default" : "secondary"}>
+            {plan === "async" ? t("planAsync") : t("planGuided")}
+          </Badge>
+        </div>
+        {plan !== "async" && level && (
+          <form action={enableAsyncPlan} className="mt-4">
+            <input type="hidden" name="studentId" value={student.id} />
+            <input type="hidden" name="levelId" value={level.id} />
+            <Button type="submit" size="sm" variant="outline">
+              {t("enableAsync")}
+            </Button>
+          </form>
+        )}
+      </section>
+
+      <section className="mt-6 glass-card rounded-2xl p-6">
         <h2 className="mb-3 font-heading text-lg font-semibold">Notas</h2>
         <form action={updateStudentNotes} className="space-y-3">
           <input type="hidden" name="studentId" value={student.id} />

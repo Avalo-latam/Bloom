@@ -180,7 +180,13 @@
     "done": "Listo",
     "errorExists": "Ya existe una cuenta con ese correo.",
     "errorGeneric": "No se pudo crear. Revisá los datos.",
-    "open": "Ver ficha"
+    "open": "Ver ficha",
+    "planTitle": "Plan",
+    "planGuided": "Guiado",
+    "planAsync": "Asincrónico",
+    "planGuidedDesc": "Clases en vivo 1x/semana; la profe libera el contenido.",
+    "planAsyncDesc": "A su ritmo; los módulos se desbloquean al avanzar.",
+    "enableAsync": "Pasar a plan asincrónico"
   },
   "auth": {
     "signIn": "Iniciar sesión",
@@ -259,5 +265,28 @@
     "levelD": "Completaste todo el nivel",
     "earned": "Conseguido",
     "locked": "Bloqueado"
+  },
+  "plans": {
+    "title": "Elegí tu camino",
+    "subtitle": "Dos formas de florecer. Vos elegís el ritmo.",
+    "popular": "Más elegido",
+    "guidedName": "Plan Guiado",
+    "guidedPrice": "desde $15.000",
+    "guidedPer": "por mes",
+    "guidedTag": "Con clases en vivo",
+    "gP1": "Clase en vivo 1×/semana (1 hora) por Zoom/Meet",
+    "gP2": "Acompañamiento personalizado de tu profe",
+    "gP3": "Material, tareas y devoluciones",
+    "gP4": "Ideal si querés guía y constancia",
+    "asyncName": "Florecé a tu ritmo",
+    "asyncPrice": "$20.000",
+    "asyncPer": "por mes",
+    "asyncTag": "100% a tu ritmo",
+    "aP1": "Aprendé cuando quieras, sin horarios fijos",
+    "aP2": "Contenido gamificado: quizzes, lectura, speech y fonética",
+    "aP3": "Los módulos se desbloquean a medida que avanzás",
+    "aP4": "Feedback personalizado de Jime en tus entregas",
+    "aP5": "Seguís tu progreso con tu jardín y logros",
+    "cta": "Quiero este plan"
   }
 }

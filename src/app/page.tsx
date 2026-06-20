@@ -7,6 +7,7 @@ import { LevelBadge } from "@/components/level-badge";
 import { Button } from "@/components/ui/button";
 import { Reveal, HoverLift } from "@/components/motion";
 import { HeroBackdrop } from "@/components/brand/hero-backdrop";
+import { PlansSection } from "@/components/landing/plans";
 import {
   BloomScene,
   ArtClassroom,
@@ -173,6 +174,9 @@ export default async function LandingPage() {
             </div>
           </div>
         </section>
+
+        {/* Plans */}
+        <PlansSection />
 
         {/* CTA */}
         <section className="mx-auto w-full max-w-6xl px-5 py-20">

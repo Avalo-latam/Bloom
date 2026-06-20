@@ -53,5 +53,14 @@ export async function toggleLessonComplete(formData: FormData) {
     .update({ completed_at: done ? new Date().toISOString() : null })
     .eq("lesson_id", lessonId)
     .eq("student_id", me.id);
+
+  // Self-paced students auto-unlock the next module on completion.
+  if (done) {
+    await supabase.rpc("async_unlock_next", {
+      p_student: me.id,
+      p_lesson: lessonId,
+    });
+  }
   revalidatePath("/app/curriculum", "layout");
+  revalidatePath("/app/progress");
 }
