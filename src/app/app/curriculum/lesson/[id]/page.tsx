@@ -9,6 +9,7 @@ import { LevelBadge } from "@/components/level-badge";
 import { BLOCK_META, type BlockKind, type BlockContent } from "@/lib/blocks";
 import { YouTubeEmbed } from "@/components/embeds/youtube";
 import { QuizLauncher } from "@/components/quiz/quiz-launcher";
+import { PhoneticsPractice } from "@/components/app/phonetics-practice";
 import type { Quiz } from "@/lib/quiz";
 import type { LevelCode } from "@/lib/levels";
 import { cn } from "@/lib/utils";
@@ -169,6 +170,11 @@ export default async function LessonPage({
                     )}
                     {content.videoUrl && (
                       <YouTubeEmbed url={content.videoUrl} className="mt-3" />
+                    )}
+                    {content.phonetics && content.phonetics.length > 0 && (
+                      <div className="mt-3">
+                        <PhoneticsPractice items={content.phonetics} />
+                      </div>
                     )}
                     {content.kahootUrl && (
                       <a

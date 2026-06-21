@@ -41,4 +41,5 @@ export type BlockContent = {
   videoUrl?: string;
   kahootUrl?: string;
   quizId?: string;
+  phonetics?: { word: string; ipa?: string; audioUrl?: string }[];
 };

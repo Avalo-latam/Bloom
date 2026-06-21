@@ -415,5 +415,14 @@
     "delete": "Eliminar",
     "every": "Todas las semanas",
     "at": "a las"
+  },
+  "phonetics": {
+    "record": "Grabar",
+    "stop": "Detener",
+    "playYours": "Escuchar tu voz",
+    "playReference": "Escuchar referencia",
+    "recording": "Grabando… 🔴",
+    "tapToRecord": "Tocá el micrófono y repetí",
+    "micError": "No pudimos acceder al micrófono"
   }
 }
