@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { notify } from "@/lib/notify";
 
 const receiptSchema = z.object({
   period: z.string().min(1),
@@ -59,7 +60,7 @@ export async function verifyPayment(formData: FormData) {
 
   const { data: payment } = await supabase
     .from("payments")
-    .select("id, student_id, kind")
+    .select("id, student_id, kind, student:profiles!payments_student_id_fkey(email)")
     .eq("id", paymentId)
     .maybeSingle();
   if (!payment) return;
@@ -89,6 +90,18 @@ export async function verifyPayment(formData: FormData) {
       });
     }
   }
+
+  await notify(supabase, {
+    userId: payment.student_id,
+    kind: "payment",
+    title: "¡Pago verificado! ✅",
+    body:
+      payment.kind === "async"
+        ? "Tu plan asincrónico está activo. ¡A florecer! 🌱"
+        : "Gracias, tu pago quedó registrado.",
+    link: "/app/payments",
+    email: (payment.student as { email: string | null } | null)?.email,
+  });
 
   revalidatePath("/app/payments");
 }

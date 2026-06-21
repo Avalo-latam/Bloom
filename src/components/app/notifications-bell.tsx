@@ -39,8 +39,21 @@ export function NotificationsBell() {
 
   const unread = items.filter((n) => !n.read_at).length;
 
+  async function markAllRead() {
+    if (unread === 0) return;
+    const supabase = createClient();
+    const ids = items.filter((n) => !n.read_at).map((n) => n.id);
+    await supabase
+      .from("notifications")
+      .update({ read_at: new Date().toISOString() })
+      .in("id", ids);
+    setItems((prev) =>
+      prev.map((n) => ({ ...n, read_at: n.read_at ?? new Date().toISOString() })),
+    );
+  }
+
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={(o) => o && markAllRead()}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="size-5" />

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { notify } from "@/lib/notify";
 
 const createSchema = z.object({
   title: z.string().trim().min(2),
@@ -52,6 +53,15 @@ export async function createAssignment(
     })),
   );
 
+  await supabase.from("notifications").insert(
+    studentIds.map((user_id) => ({
+      user_id,
+      kind: "homework" as const,
+      title: `Nueva tarea: ${parsed.data.title}`,
+      link: "/app/homework",
+    })),
+  );
+
   revalidatePath("/app/homework");
   return { ok: true };
 }
@@ -97,6 +107,12 @@ export async function gradeSubmission(formData: FormData) {
   const feedback = String(formData.get("feedback") ?? "");
 
   const supabase = await createClient();
+  const { data: sub } = await supabase
+    .from("submissions")
+    .select("student_id, assignment:assignments(title), student:profiles!submissions_student_id_fkey(email)")
+    .eq("id", submissionId)
+    .maybeSingle();
+
   await supabase
     .from("submissions")
     .update({
@@ -107,6 +123,18 @@ export async function gradeSubmission(formData: FormData) {
       graded_at: new Date().toISOString(),
     })
     .eq("id", submissionId);
+
+  if (sub) {
+    const title = (sub.assignment as { title: string } | null)?.title ?? "tu tarea";
+    await notify(supabase, {
+      userId: sub.student_id,
+      kind: "grade",
+      title: `Tu tarea fue corregida: ${title}`,
+      body: feedback || undefined,
+      link: `/app/homework/${submissionId}`,
+      email: (sub.student as { email: string | null } | null)?.email,
+    });
+  }
 
   revalidatePath(`/app/homework/${submissionId}`);
   revalidatePath("/app/homework");
