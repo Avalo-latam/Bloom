@@ -206,7 +206,8 @@
     "checkEmail": "Revisá tu correo",
     "signOutDone": "Cerraste sesión",
     "errorInvalid": "Correo o contraseña incorrectos.",
-    "errorGeneric": "Algo salió mal. Probá de nuevo."
+    "errorGeneric": "Algo salió mal. Probá de nuevo.",
+    "welcome": "¡Hola de nuevo! 🌱"
   },
   "levels": {
     "A1": "A1 · Principiante",

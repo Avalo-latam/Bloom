@@ -206,7 +206,8 @@
     "checkEmail": "Check your email",
     "signOutDone": "You've signed out",
     "errorInvalid": "Wrong email or password.",
-    "errorGeneric": "Something went wrong. Please try again."
+    "errorGeneric": "Something went wrong. Please try again.",
+    "welcome": "Hi again! 🌱"
   },
   "levels": {
     "A1": "A1 · Beginner",
