@@ -142,7 +142,8 @@
     "selectStudents": "Elegí a quién liberar",
     "lockedHint": "Tu profesora todavía no liberó esta clase.",
     "totalDuration": "Duración total",
-    "back": "Volver al nivel"
+    "back": "Volver al nivel",
+    "lockedHintAsync": "Completá el módulo anterior para desbloquear esta clase."
   },
   "students": {
     "title": "Alumnos",
@@ -288,5 +289,38 @@
     "aP4": "Feedback personalizado de Jime en tus entregas",
     "aP5": "Seguís tu progreso con tu jardín y logros",
     "cta": "Quiero este plan"
+  },
+  "payments": {
+    "title": "Pagos",
+    "subtitleStudent": "Subí tu comprobante y seguí el estado de tus pagos.",
+    "subtitleStaff": "Verificá los comprobantes de tus alumnos.",
+    "payTo": "Transferí al alias",
+    "yourPlan": "Tu plan",
+    "amount": "Monto",
+    "monthly": "/mes",
+    "perClass": "por mes",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "period": "Período",
+    "receipt": "Comprobante",
+    "chooseFile": "Elegí un archivo…",
+    "submitReceipt": "Enviar comprobante",
+    "submitted": "¡Comprobante enviado! Jime lo va a revisar.",
+    "uploadError": "No se pudo enviar. Probá de nuevo.",
+    "history": "Tu historial",
+    "noPayments": "Todavía no cargaste pagos.",
+    "pendingTitle": "Por verificar",
+    "noPending": "No hay comprobantes para verificar. ¡Al día! 🌿",
+    "verify": "Verificar",
+    "reject": "Rechazar",
+    "viewReceipt": "Ver comprobante",
+    "status": "Estado",
+    "pendiente": "Pendiente",
+    "verificado": "Verificado",
+    "rechazado": "Rechazado",
+    "student": "Alumno",
+    "planAsync": "Asincrónico",
+    "planGuided": "Guiado",
+    "enablesAsync": "Al verificar, se habilita el plan asincrónico."
   }
 }

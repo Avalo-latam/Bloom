@@ -32,14 +32,24 @@ export default async function LessonPage({
 
   // Students need an explicit release; staff always have access.
   let locked = false;
+  let isAsync = false;
   if (profile.role === "student") {
-    const { data: access } = await supabase
-      .from("lesson_access")
-      .select("lesson_id")
-      .eq("lesson_id", id)
-      .eq("student_id", profile.id)
-      .maybeSingle();
+    const [{ data: access }, { data: enr }] = await Promise.all([
+      supabase
+        .from("lesson_access")
+        .select("lesson_id")
+        .eq("lesson_id", id)
+        .eq("student_id", profile.id)
+        .maybeSingle(),
+      supabase
+        .from("enrollments")
+        .select("plan")
+        .eq("student_id", profile.id)
+        .eq("status", "active")
+        .maybeSingle(),
+    ]);
     locked = !access;
+    isAsync = enr?.plan === "async";
   }
 
   const { data: blocks } = await supabase
@@ -122,7 +132,9 @@ export default async function LessonPage({
       {locked ? (
         <div className="mt-8 flex flex-col items-center gap-3 rounded-2xl border border-dashed py-16 text-center">
           <Lock className="size-8 text-muted-foreground" />
-          <p className="text-muted-foreground">{t("lockedHint")}</p>
+          <p className="text-muted-foreground">
+            {isAsync ? t("lockedHintAsync") : t("lockedHint")}
+          </p>
         </div>
       ) : (
         <div className="mt-8">

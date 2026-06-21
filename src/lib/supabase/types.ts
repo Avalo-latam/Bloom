@@ -1138,7 +1138,7 @@ export type Database = {
         | "promotion"
         | "message"
         | "system"
-      payment_kind: "individual" | "group"
+      payment_kind: "individual" | "group" | "async"
       payment_status: "pendiente" | "verificado" | "rechazado"
       promotion_status: "in_progress" | "ready" | "approved" | "rejected"
       quiz_kind:
@@ -1302,7 +1302,7 @@ export const Constants = {
         "message",
         "system",
       ],
-      payment_kind: ["individual", "group"],
+      payment_kind: ["individual", "group", "async"],
       payment_status: ["pendiente", "verificado", "rechazado"],
       promotion_status: ["in_progress", "ready", "approved", "rejected"],
       quiz_kind: [

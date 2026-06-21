@@ -142,7 +142,8 @@
     "selectStudents": "Choose who to release to",
     "lockedHint": "Your teacher hasn't released this lesson yet.",
     "totalDuration": "Total duration",
-    "back": "Back to level"
+    "back": "Back to level",
+    "lockedHintAsync": "Complete the previous module to unlock this lesson."
   },
   "students": {
     "title": "Students",
@@ -288,5 +289,38 @@
     "aP4": "Personalized feedback from Jime on your work",
     "aP5": "Track your progress with your garden and badges",
     "cta": "I want this plan"
+  },
+  "payments": {
+    "title": "Payments",
+    "subtitleStudent": "Upload your receipt and track your payments.",
+    "subtitleStaff": "Verify your students' receipts.",
+    "payTo": "Transfer to alias",
+    "yourPlan": "Your plan",
+    "amount": "Amount",
+    "monthly": "/mo",
+    "perClass": "per month",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "period": "Period",
+    "receipt": "Receipt",
+    "chooseFile": "Choose a file…",
+    "submitReceipt": "Send receipt",
+    "submitted": "Receipt sent! Jime will review it.",
+    "uploadError": "Couldn't send. Try again.",
+    "history": "Your history",
+    "noPayments": "No payments yet.",
+    "pendingTitle": "To verify",
+    "noPending": "No receipts to verify. All clear! 🌿",
+    "verify": "Verify",
+    "reject": "Reject",
+    "viewReceipt": "View receipt",
+    "status": "Status",
+    "pendiente": "Pending",
+    "verificado": "Verified",
+    "rechazado": "Rejected",
+    "student": "Student",
+    "planAsync": "Self-paced",
+    "planGuided": "Guided",
+    "enablesAsync": "Verifying enables the self-paced plan."
   }
 }
