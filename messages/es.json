@@ -187,7 +187,12 @@
     "planAsync": "Asincrónico",
     "planGuidedDesc": "Clases en vivo 1x/semana; la profe libera el contenido.",
     "planAsyncDesc": "A su ritmo; los módulos se desbloquean al avanzar.",
-    "enableAsync": "Pasar a plan asincrónico"
+    "enableAsync": "Pasar a plan asincrónico",
+    "levelTitle": "Nivel y progreso",
+    "completionLabel": "Avance del nivel",
+    "promoteTo": "Subir a",
+    "atTop": "Está en el nivel más alto.",
+    "isTrack": "Track especial (sin secuencia de niveles)."
   },
   "auth": {
     "signIn": "Iniciar sesión",
@@ -376,5 +381,39 @@
     "exam": "Examen",
     "viewGrades": "Ver notas",
     "graded": "Corregidas"
+  },
+  "schedule": {
+    "title": "Agenda",
+    "subtitleStudent": "Tus próximas clases.",
+    "subtitleStaff": "Programá clases y tomá asistencia.",
+    "newClass": "Nueva clase",
+    "classTitle": "Título",
+    "kind": "Tipo",
+    "individual": "Individual",
+    "group": "Grupal",
+    "datetime": "Fecha y hora",
+    "duration": "Duración (min)",
+    "meetingUrl": "Link de Zoom/Meet",
+    "recurrence": "Repetición",
+    "weekly": "Semanal",
+    "none": "Única",
+    "selectStudents": "Alumnos",
+    "create": "Crear clase",
+    "creating": "Creando…",
+    "join": "Entrar a la clase",
+    "noClasses": "No tenés clases agendadas.",
+    "upcoming": "Próximas",
+    "attendance": "Asistencia",
+    "present": "Presente",
+    "absent": "Ausente",
+    "late": "Tarde",
+    "excused": "Justificado",
+    "sessionDate": "Fecha de la clase",
+    "save": "Guardar",
+    "roster": "Alumnos",
+    "open": "Ver clase",
+    "delete": "Eliminar",
+    "every": "Todas las semanas",
+    "at": "a las"
   }
 }

@@ -187,7 +187,12 @@
     "planAsync": "Self-paced",
     "planGuidedDesc": "Live classes 1×/week; teacher releases content.",
     "planAsyncDesc": "Self-paced; modules unlock as they progress.",
-    "enableAsync": "Switch to self-paced plan"
+    "enableAsync": "Switch to self-paced plan",
+    "levelTitle": "Level & progress",
+    "completionLabel": "Level progress",
+    "promoteTo": "Promote to",
+    "atTop": "Already at the top level.",
+    "isTrack": "Special track (no level sequence)."
   },
   "auth": {
     "signIn": "Sign in",
@@ -376,5 +381,39 @@
     "exam": "Exam",
     "viewGrades": "View grades",
     "graded": "Graded"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "subtitleStudent": "Your upcoming classes.",
+    "subtitleStaff": "Schedule classes and take attendance.",
+    "newClass": "New class",
+    "classTitle": "Title",
+    "kind": "Type",
+    "individual": "Individual",
+    "group": "Group",
+    "datetime": "Date and time",
+    "duration": "Duration (min)",
+    "meetingUrl": "Zoom/Meet link",
+    "recurrence": "Repeat",
+    "weekly": "Weekly",
+    "none": "One-off",
+    "selectStudents": "Students",
+    "create": "Create class",
+    "creating": "Creating…",
+    "join": "Join class",
+    "noClasses": "No classes scheduled.",
+    "upcoming": "Upcoming",
+    "attendance": "Attendance",
+    "present": "Present",
+    "absent": "Absent",
+    "late": "Late",
+    "excused": "Excused",
+    "sessionDate": "Class date",
+    "save": "Save",
+    "roster": "Students",
+    "open": "View class",
+    "delete": "Delete",
+    "every": "Every week",
+    "at": "at"
   }
 }

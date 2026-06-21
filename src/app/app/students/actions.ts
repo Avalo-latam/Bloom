@@ -5,6 +5,7 @@ import { z } from "zod";
 import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { nextCefrLevel, type LevelCode } from "@/lib/levels";
 
 const createSchema = z.object({
   fullName: z.string().trim().min(2),
@@ -139,6 +140,74 @@ export async function enableAsyncPlan(formData: FormData) {
     p_student: studentId,
     p_level: levelId,
   });
+  revalidatePath(`/app/students/${studentId}`);
+}
+
+/** Promote a student to the next CEFR level (staff only). */
+export async function promoteStudent(formData: FormData) {
+  const me = await getProfile();
+  if (me.role === "student") return;
+  const studentId = String(formData.get("studentId"));
+  if (!studentId) return;
+
+  const supabase = await createClient();
+  const { data: enr } = await supabase
+    .from("enrollments")
+    .select("id, plan, teacher_id, level:levels(id, code)")
+    .eq("student_id", studentId)
+    .eq("status", "active")
+    .order("started_at", { ascending: false })
+    .maybeSingle();
+  const level = enr?.level as { id: string; code: LevelCode } | null;
+  if (!enr || !level) return;
+
+  const nextCode = nextCefrLevel(level.code);
+  if (!nextCode) return; // already at C1, or a track (FCE/Phonetics)
+
+  const { data: nextLevel } = await supabase
+    .from("levels")
+    .select("id")
+    .eq("code", nextCode)
+    .maybeSingle();
+  if (!nextLevel) return;
+
+  await supabase
+    .from("enrollments")
+    .update({ status: "completed", completed_at: new Date().toISOString() })
+    .eq("id", enr.id);
+
+  await supabase.from("enrollments").insert({
+    student_id: studentId,
+    level_id: nextLevel.id,
+    plan: enr.plan,
+    teacher_id: enr.teacher_id ?? me.id,
+    status: "active",
+  });
+
+  await supabase.from("level_promotions").insert({
+    student_id: studentId,
+    from_level_id: level.id,
+    to_level_id: nextLevel.id,
+    status: "approved",
+    teacher_id: me.id,
+    decided_at: new Date().toISOString(),
+  });
+
+  if (enr.plan === "async") {
+    await supabase.rpc("enable_async", {
+      p_student: studentId,
+      p_level: nextLevel.id,
+    });
+  }
+
+  await supabase.from("notifications").insert({
+    user_id: studentId,
+    kind: "promotion",
+    title: `¡Subiste a ${nextCode}! 🎉`,
+    body: "Tu profe te promovió de nivel. ¡A seguir floreciendo!",
+    link: "/app/curriculum",
+  });
+
   revalidatePath(`/app/students/${studentId}`);
 }
 

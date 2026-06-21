@@ -4,13 +4,18 @@ import { getTranslations } from "next-intl/server";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
 import { requireStaff } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { updateStudentNotes, enableAsyncPlan } from "@/app/app/students/actions";
+import {
+  updateStudentNotes,
+  enableAsyncPlan,
+  promoteStudent,
+} from "@/app/app/students/actions";
 import { LevelBadge } from "@/components/level-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import type { LevelCode } from "@/lib/levels";
+import { nextCefrLevel, type LevelCode } from "@/lib/levels";
 
 export default async function StudentDetailPage({
   params,
@@ -43,6 +48,25 @@ export default async function StudentDetailPage({
     | { id: string; code: LevelCode; subtitle: string }
     | null;
   const plan = enrollment?.plan ?? "guided";
+  const nextCode = level ? nextCefrLevel(level.code) : null;
+
+  // Completion in the current level (for promotion readiness).
+  let pct = 0;
+  if (level) {
+    const [{ data: lessons }, { data: done }] = await Promise.all([
+      supabase.from("lessons").select("id").eq("level_id", level.id),
+      supabase
+        .from("lesson_access")
+        .select("lesson_id")
+        .eq("student_id", id)
+        .not("completed_at", "is", null),
+    ]);
+    const total = (lessons ?? []).length;
+    const doneSet = new Set((done ?? []).map((d) => d.lesson_id));
+    const completed = (lessons ?? []).filter((l) => doneSet.has(l.id)).length;
+    pct = total ? Math.round((completed / total) * 100) : 0;
+  }
+
   const initials = (student.full_name || student.email || "?")
     .split(" ")
     .map((p) => p[0])
@@ -118,6 +142,38 @@ export default async function StudentDetailPage({
           </form>
         )}
       </section>
+
+      {level && (
+        <section className="mt-6 glass-card rounded-2xl p-6">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="font-heading text-lg font-semibold">
+              {t("levelTitle")}
+            </h2>
+            <LevelBadge code={level.code} size="sm" />
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-muted-foreground">{t("completionLabel")}</span>
+            <span className="font-semibold">{pct}%</span>
+          </div>
+          <Progress value={pct} className="mt-2" />
+          <div className="mt-4">
+            {nextCode ? (
+              <form action={promoteStudent}>
+                <input type="hidden" name="studentId" value={student.id} />
+                <Button type="submit" size="sm" className="gap-1.5">
+                  🎉 {t("promoteTo")} {nextCode}
+                </Button>
+              </form>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                {(["FCE", "PHONETICS"] as LevelCode[]).includes(level.code)
+                  ? t("isTrack")
+                  : t("atTop")}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="mt-6 glass-card rounded-2xl p-6">
         <h2 className="mb-3 font-heading text-lg font-semibold">Notas</h2>
