@@ -424,5 +424,39 @@
     "recording": "Grabando… 🔴",
     "tapToRecord": "Tocá el micrófono y repetí",
     "micError": "No pudimos acceder al micrófono"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "subtitle": "Configuración del campus.",
+    "pricing": "Precios y pago",
+    "alias": "Alias para transferencias",
+    "individual": "Individual (por mes)",
+    "group": "Grupal (por mes)",
+    "asyncp": "Asincrónico (por mes)",
+    "save": "Guardar cambios",
+    "saved": "Guardado"
+  },
+  "exams": {
+    "title": "Exámenes",
+    "subtitleStudent": "Rendí tus exámenes y mirá tus resultados.",
+    "subtitleStaff": "Creá exámenes y mirá los resultados.",
+    "newExam": "Nuevo examen",
+    "examTitle": "Título",
+    "pickQuiz": "Elegí el quiz base",
+    "pickLevel": "Nivel (opcional)",
+    "anyLevel": "Todos los niveles",
+    "description": "Descripción",
+    "create": "Crear examen",
+    "creating": "Creando…",
+    "noExams": "No hay exámenes todavía.",
+    "take": "Rendir examen",
+    "retake": "Rendir de nuevo",
+    "yourScore": "Tu nota",
+    "results": "Resultados",
+    "notTaken": "Sin rendir",
+    "student": "Alumno",
+    "score": "Nota",
+    "for": "para",
+    "done": "Rendido"
   }
 }

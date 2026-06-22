@@ -21,7 +21,13 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
-export function QuizPlayer({ quiz }: { quiz: Quiz }) {
+export function QuizPlayer({
+  quiz,
+  onFinish,
+}: {
+  quiz: Quiz;
+  onFinish?: (pct: number) => void;
+}) {
   const t = useTranslations("quiz");
   const [index, setIndex] = React.useState(0);
   const [responses, setResponses] = React.useState<Record<string, QuizResponse>>({});
@@ -46,6 +52,7 @@ export function QuizPlayer({ quiz }: { quiz: Quiz }) {
     const pct = Math.round((got / pts) * 100);
     setFinished(true);
     if (pct >= 60) setFire((f) => f + 1);
+    onFinish?.(pct);
   }
 
   function next() {

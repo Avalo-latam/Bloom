@@ -424,5 +424,39 @@
     "recording": "Recording… 🔴",
     "tapToRecord": "Tap the mic and repeat",
     "micError": "Could not access the microphone"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Campus configuration.",
+    "pricing": "Pricing & payment",
+    "alias": "Transfer alias",
+    "individual": "Individual (per month)",
+    "group": "Group (per month)",
+    "asyncp": "Self-paced (per month)",
+    "save": "Save changes",
+    "saved": "Saved"
+  },
+  "exams": {
+    "title": "Exams",
+    "subtitleStudent": "Take your exams and see your results.",
+    "subtitleStaff": "Create exams and see the results.",
+    "newExam": "New exam",
+    "examTitle": "Title",
+    "pickQuiz": "Base quiz",
+    "pickLevel": "Level (optional)",
+    "anyLevel": "All levels",
+    "description": "Description",
+    "create": "Create exam",
+    "creating": "Creating…",
+    "noExams": "No exams yet.",
+    "take": "Take exam",
+    "retake": "Retake",
+    "yourScore": "Your score",
+    "results": "Results",
+    "notTaken": "Not taken",
+    "student": "Student",
+    "score": "Score",
+    "for": "for",
+    "done": "Taken"
   }
 }
