@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, Clock, Play, Lock } from "lucide-react";
+import { ArrowLeft, Clock, Lock, Lightbulb, BookText, MessagesSquare } from "lucide-react";
 import { getProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
 import { LevelBadge } from "@/components/level-badge";
+import { CompleteLessonButton } from "@/components/app/complete-lesson-button";
 import { BLOCK_META, type BlockKind, type BlockContent } from "@/lib/blocks";
 import { YouTubeEmbed } from "@/components/embeds/youtube";
 import { QuizLauncher } from "@/components/quiz/quiz-launcher";
 import { PhoneticsPractice } from "@/components/app/phonetics-practice";
 import type { Quiz } from "@/lib/quiz";
 import type { LevelCode } from "@/lib/levels";
-import { cn } from "@/lib/utils";
 
 export default async function LessonPage({
   params,
@@ -23,22 +23,24 @@ export default async function LessonPage({
   const profile = await getProfile();
   const supabase = await createClient();
   const t = await getTranslations("curriculum");
+  const tq = await getTranslations("quiz");
+  const isStaff = profile.role !== "student";
 
   const { data: lesson } = await supabase
     .from("lessons")
-    .select("id, title, objective, duration_min, level:levels(code, subtitle), unit:units(title)")
+    .select("id, title, objective, level:levels(code, subtitle), unit:units(title)")
     .eq("id", id)
     .maybeSingle();
   if (!lesson) notFound();
 
-  // Students need an explicit release; staff always have access.
   let locked = false;
   let isAsync = false;
+  let completed = false;
   if (profile.role === "student") {
     const [{ data: access }, { data: enr }] = await Promise.all([
       supabase
         .from("lesson_access")
-        .select("lesson_id")
+        .select("lesson_id, completed_at")
         .eq("lesson_id", id)
         .eq("student_id", profile.id)
         .maybeSingle(),
@@ -50,16 +52,16 @@ export default async function LessonPage({
         .maybeSingle(),
     ]);
     locked = !access;
+    completed = !!access?.completed_at;
     isAsync = enr?.plan === "async";
   }
 
   const { data: blocks } = await supabase
     .from("lesson_blocks")
-    .select("id, kind, title, duration_min, sort_order, content")
+    .select("id, kind, title, content, sort_order")
     .eq("lesson_id", id)
     .order("sort_order");
 
-  // Load quizzes referenced by blocks (only when the lesson is unlocked).
   const quizIds = (blocks ?? [])
     .map((b) => (b.content as BlockContent)?.quizId)
     .filter((x): x is string => !!x);
@@ -84,10 +86,8 @@ export default async function LessonPage({
     });
   }
 
-  const tq = await getTranslations("quiz");
   const level = lesson.level as { code: LevelCode; subtitle: string } | null;
   const unit = lesson.unit as { title: string } | null;
-  const totalMin = (blocks ?? []).reduce((s, b) => s + b.duration_min, 0);
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -98,35 +98,16 @@ export default async function LessonPage({
         </Link>
       </Button>
 
-      <div className="flex flex-col gap-4 rounded-2xl glass-card p-6 sm:flex-row sm:items-start sm:justify-between">
-        <div className="space-y-2">
-          {level && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <LevelBadge code={level.code} size="sm" />
-              {unit?.title}
-            </div>
-          )}
-          <h1 className="font-heading text-2xl font-bold">{lesson.title}</h1>
-          {lesson.objective && (
-            <p className="text-muted-foreground">
-              <span className="font-medium text-foreground">
-                {t("objective")}:
-              </span>{" "}
-              {lesson.objective}
-            </p>
-          )}
-          <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-            <Clock className="size-4" />
-            {totalMin} {t("minutes")} · {(blocks ?? []).length} {t("blocks")}
+      <div className="rounded-3xl glass-card p-6">
+        {level && (
+          <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+            <LevelBadge code={level.code} size="sm" />
+            {unit?.title}
           </div>
-        </div>
-        {!locked && (
-          <Button asChild size="lg" className="gap-2">
-            <Link href={`/app/curriculum/lesson/${id}/classroom`}>
-              <Play className="size-4" />
-              {t("openClassroom")}
-            </Link>
-          </Button>
+        )}
+        <h1 className="font-heading text-3xl font-bold">{lesson.title}</h1>
+        {lesson.objective && (
+          <p className="mt-2 text-muted-foreground">{lesson.objective}</p>
         )}
       </div>
 
@@ -138,64 +119,134 @@ export default async function LessonPage({
           </p>
         </div>
       ) : (
-        <div className="mt-8">
-          <h2 className="mb-4 font-heading text-lg font-semibold">
-            {t("blocks")}
-          </h2>
-          <ol className="relative space-y-3 border-l-2 border-dashed border-border pl-6">
-            {(blocks ?? []).map((block) => {
-              const meta = BLOCK_META[block.kind as BlockKind];
-              const Icon = meta?.icon ?? Clock;
-              const content = (block.content ?? {}) as BlockContent;
-              return (
-                <li key={block.id} className="relative">
+        <div className="mt-6 space-y-5">
+          {(blocks ?? []).map((block) => {
+            const meta = BLOCK_META[block.kind as BlockKind];
+            const Icon = meta?.icon ?? Clock;
+            const c = (block.content ?? {}) as BlockContent;
+            const quiz = c.quizId ? quizMap.get(c.quizId) : undefined;
+            return (
+              <section key={block.id} className="rounded-3xl glass-card p-6">
+                <div className="mb-4 flex items-center gap-3">
                   <span
-                    className="absolute -left-[2.1rem] top-1 inline-flex size-7 items-center justify-center rounded-full ring-4 ring-background"
+                    className="inline-flex size-9 items-center justify-center rounded-xl"
                     style={{ backgroundColor: `var(--${meta?.color ?? "muted"})` }}
                   >
-                    <Icon className="size-3.5 text-foreground/70" />
+                    <Icon className="size-4.5 text-foreground/70" />
                   </span>
-                  <div className="rounded-xl glass-card p-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold">{block.title}</h3>
-                      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                        <Clock className="size-3" />
-                        {block.duration_min}′
-                      </span>
-                    </div>
-                    {content.guide && (
-                      <p className="mt-1.5 text-sm text-muted-foreground">
-                        {content.guide}
-                      </p>
-                    )}
-                    {content.videoUrl && (
-                      <YouTubeEmbed url={content.videoUrl} className="mt-3" />
-                    )}
-                    {content.phonetics && content.phonetics.length > 0 && (
-                      <div className="mt-3">
-                        <PhoneticsPractice items={content.phonetics} />
-                      </div>
-                    )}
-                    {content.kahootUrl && (
-                      <a
-                        href={content.kahootUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-3 inline-flex items-center gap-2 rounded-xl bg-brand-lemon/60 px-4 py-2 text-sm font-semibold text-foreground/80 transition-transform hover:-translate-y-0.5"
+                  <h2 className="font-heading text-lg font-bold">{block.title}</h2>
+                </div>
+
+                {/* Teacher-only choreography note */}
+                {isStaff && c.guide && (
+                  <p className="mb-4 rounded-xl border border-dashed bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
+                    👩‍🏫 {c.guide}
+                  </p>
+                )}
+
+                {c.html && (
+                  <div
+                    className="space-y-2 leading-relaxed [&_em]:font-semibold [&_em]:not-italic [&_em]:text-primary [&_li]:mt-1 [&_p]:text-foreground/90 [&_strong]:font-semibold [&_ul]:ml-4 [&_ul]:list-disc"
+                    dangerouslySetInnerHTML={{ __html: c.html }}
+                  />
+                )}
+
+                {c.examples && c.examples.length > 0 && (
+                  <ul className="mt-3 space-y-1.5">
+                    {c.examples.map((ex, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-2 rounded-xl bg-brand-mint/25 px-3 py-2 text-sm"
+                        dangerouslySetInnerHTML={{ __html: `<span>🌿</span><span>${ex}</span>` }}
+                      />
+                    ))}
+                  </ul>
+                )}
+
+                {c.vocab && c.vocab.length > 0 && (
+                  <div className="mt-3 grid gap-1.5 sm:grid-cols-2">
+                    {c.vocab.map((v, i) => (
+                      <div
+                        key={i}
+                        className="flex items-baseline justify-between gap-2 rounded-lg border bg-card/60 px-3 py-1.5 text-sm"
                       >
-                        🎮 {tq("playKahoot")}
-                      </a>
-                    )}
+                        <span className="font-medium">{v.term}</span>
+                        <span className="text-muted-foreground">{v.es}</span>
+                      </div>
+                    ))}
                   </div>
-                  {content.quizId && quizMap.get(content.quizId) && (
-                    <div className="mt-3">
-                      <QuizLauncher quiz={quizMap.get(content.quizId)!} />
+                )}
+
+                {c.reading && (
+                  <div className="mt-3 rounded-2xl border bg-card/60 p-4">
+                    <div className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                      <BookText className="size-3.5" />
+                      {c.reading.title ?? "Reading"}
                     </div>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
+                    <p className="whitespace-pre-line text-sm leading-relaxed">
+                      {c.reading.text}
+                    </p>
+                  </div>
+                )}
+
+                {c.videoUrl && <YouTubeEmbed url={c.videoUrl} className="mt-3" />}
+
+                {c.speaking && c.speaking.length > 0 && (
+                  <div className="mt-3 rounded-2xl bg-brand-rose/15 p-4">
+                    <div className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
+                      <MessagesSquare className="size-4 text-primary" />
+                      Speaking
+                    </div>
+                    <ul className="space-y-1 text-sm">
+                      {c.speaking.map((s, i) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {c.phonetics && c.phonetics.length > 0 && (
+                  <div className="mt-3">
+                    <PhoneticsPractice items={c.phonetics} />
+                  </div>
+                )}
+
+                {c.tip && (
+                  <p className="mt-3 flex gap-2 rounded-xl bg-brand-lemon/30 px-3 py-2 text-sm">
+                    <Lightbulb className="size-4 shrink-0 text-foreground/60" />
+                    <span>{c.tip}</span>
+                  </p>
+                )}
+
+                {c.kahootUrl && (
+                  <a
+                    href={c.kahootUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 rounded-xl bg-brand-lemon/60 px-4 py-2 text-sm font-semibold text-foreground/80 transition-transform hover:-translate-y-0.5"
+                  >
+                    🎮 {tq("playKahoot")}
+                  </a>
+                )}
+
+                {quiz && (
+                  <div className="mt-4">
+                    <QuizLauncher quiz={quiz} />
+                  </div>
+                )}
+              </section>
+            );
+          })}
+
+          {/* Student: mark the lesson complete (drives the garden + async unlock) */}
+          {profile.role === "student" && (
+            <div className="flex justify-center pt-2">
+              <CompleteLessonButton lessonId={id} completed={completed} />
+            </div>
+          )}
         </div>
       )}
     </div>

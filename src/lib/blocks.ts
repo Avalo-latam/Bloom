@@ -36,8 +36,20 @@ export const BLOCK_META: Record<
 
 export type BlockContent = {
   type?: string;
+  /** Teacher-facing note (shown to staff only — the choreography guide). */
   guide?: string;
+  /** Rich student-facing explanation (trusted HTML authored by us). */
   html?: string;
+  /** Example sentences. */
+  examples?: string[];
+  /** Vocabulary list. */
+  vocab?: { term: string; es: string }[];
+  /** A short reading passage. */
+  reading?: { title?: string; text: string };
+  /** Speaking prompt / questions for production. */
+  speaking?: string[];
+  /** A highlighted tip. */
+  tip?: string;
   videoUrl?: string;
   kahootUrl?: string;
   quizId?: string;
