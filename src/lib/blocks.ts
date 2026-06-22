@@ -51,6 +51,8 @@ export type BlockContent = {
   /** A highlighted tip. */
   tip?: string;
   videoUrl?: string;
+  /** A themed YouTube search ("watch a video about X") — robust, never broken. */
+  videoSearch?: string;
   kahootUrl?: string;
   quizId?: string;
   phonetics?: { word: string; ipa?: string; audioUrl?: string }[];

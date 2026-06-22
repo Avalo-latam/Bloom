@@ -191,6 +191,26 @@ export default async function LessonPage({
 
                 {c.videoUrl && <YouTubeEmbed url={c.videoUrl} className="mt-3" />}
 
+                {c.videoSearch && (
+                  <a
+                    href={`https://www.youtube.com/results?search_query=${encodeURIComponent(c.videoSearch + " english lesson")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 flex items-center gap-3 rounded-2xl bg-brand-sky/30 px-4 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+                  >
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#FF0000]/90 text-white">
+                      ▶
+                    </span>
+                    <span>
+                      🎬 Watch a video about{" "}
+                      <strong>{c.videoSearch}</strong>
+                      <span className="block text-xs text-muted-foreground">
+                        Then answer the questions below.
+                      </span>
+                    </span>
+                  </a>
+                )}
+
                 {c.speaking && c.speaking.length > 0 && (
                   <div className="mt-3 rounded-2xl bg-brand-rose/15 p-4">
                     <div className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
