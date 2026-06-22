@@ -25,13 +25,30 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bloom-ingles.vercel.app";
+const description =
+  "Bloom English — el campus para aprender inglés a tu ritmo: clases en vivo, material interactivo y seguimiento de progreso de A1 a C1, FCE y fonética.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Bloom English",
     template: "%s · Bloom English",
   },
-  description:
-    "Bloom English — el campus para aprender inglés a tu ritmo: clases en vivo, material interactivo y seguimiento de progreso de A1 a C1, FCE y fonética.",
+  description,
+  openGraph: {
+    title: "Bloom English",
+    description,
+    url: siteUrl,
+    siteName: "Bloom English",
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bloom English",
+    description,
+  },
 };
 
 export default async function RootLayout({
