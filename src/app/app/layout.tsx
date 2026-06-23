@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { BloomLogo } from "@/components/brand/logo";
 import { NavLinks } from "@/components/app/nav-links";
 import { MobileNav } from "@/components/app/mobile-nav";
+import { MobileTabBar } from "@/components/app/mobile-tabbar";
 import { UserMenu } from "@/components/app/user-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LocaleSwitcher } from "@/components/locale-switcher";
@@ -46,8 +47,12 @@ export default async function AppLayout({
           />
         </header>
 
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+        <main className="flex-1 px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pb-10">
+          {children}
+        </main>
       </div>
+
+      <MobileTabBar role={profile.role} />
     </div>
   );
 }
