@@ -7,7 +7,8 @@ import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/app/page-header";
 import { LevelBadge } from "@/components/level-badge";
 import { ReleaseLessonDialog } from "@/components/app/release-lesson-dialog";
-import { EditUnitDialog } from "@/components/app/curriculum-edit";
+import { EditUnitDialog, AddLessonDialog } from "@/components/app/curriculum-edit";
+import { deleteLesson } from "@/app/app/curriculum/edit-actions";
 import { Button } from "@/components/ui/button";
 import { LEVEL_CODES, LevelCode } from "@/lib/levels";
 import { cn } from "@/lib/utils";
@@ -175,6 +176,12 @@ export default async function LevelPage({
                             <ChevronRight className="size-4" />
                           </Link>
                         </Button>
+                        <form action={deleteLesson}>
+                          <input type="hidden" name="id" value={lesson.id} />
+                          <Button type="submit" size="icon" variant="ghost" className="size-7 text-destructive" aria-label="delete">
+                            ✕
+                          </Button>
+                        </form>
                       </div>
                     ) : released ? (
                       <Button asChild size="sm" variant="ghost">
@@ -191,6 +198,11 @@ export default async function LevelPage({
                 );
               })}
             </div>
+            {isStaff && (
+              <div className="mt-2">
+                <AddLessonDialog unitId={unit.id} levelId={level.id} />
+              </div>
+            )}
           </section>
         ))}
       </div>

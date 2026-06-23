@@ -16,6 +16,7 @@ import { StatCard } from "@/components/app/stat-card";
 import { Button } from "@/components/ui/button";
 import { LevelBadge } from "@/components/level-badge";
 import { WelcomeCard } from "@/components/app/welcome-card";
+import { StaffHome } from "@/components/app/staff-home";
 import type { LevelCode } from "@/lib/levels";
 
 export default async function DashboardPage() {
@@ -38,6 +39,9 @@ export default async function DashboardPage() {
       />
       {profile.role === "owner" && <OwnerDashboard />}
       {profile.role === "teacher" && <TeacherDashboard teacherId={profile.id} />}
+      {profile.role !== "student" && (
+        <StaffHome teacherId={profile.id} isOwner={profile.role === "owner"} />
+      )}
       {profile.role === "student" && <StudentDashboard studentId={profile.id} />}
     </div>
   );

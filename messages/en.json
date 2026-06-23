@@ -77,7 +77,8 @@
     "addStudent": "Add student",
     "scheduleClass": "Schedule class",
     "openCurriculum": "Open curriculum",
-    "reviewPayments": "Review payments"
+    "reviewPayments": "Review payments",
+    "todo": "To do"
   },
   "landing": {
     "loginCta": "Sign in",

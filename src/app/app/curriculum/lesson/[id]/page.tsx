@@ -11,7 +11,8 @@ import { BLOCK_META, type BlockKind, type BlockContent } from "@/lib/blocks";
 import { YouTubeEmbed } from "@/components/embeds/youtube";
 import { QuizLauncher } from "@/components/quiz/quiz-launcher";
 import { PhoneticsPractice } from "@/components/app/phonetics-practice";
-import { EditLessonDialog, EditBlockDialog } from "@/components/app/curriculum-edit";
+import { EditLessonDialog, EditBlockDialog, AddBlockDialog } from "@/components/app/curriculum-edit";
+import { deleteBlock } from "@/app/app/curriculum/edit-actions";
 import type { Quiz } from "@/lib/quiz";
 import type { LevelCode } from "@/lib/levels";
 
@@ -142,14 +143,23 @@ export default async function LessonPage({
                   </span>
                   <h2 className="font-heading text-lg font-bold">{block.title}</h2>
                   {isStaff && (
-                    <EditBlockDialog
-                      id={block.id}
-                      lessonId={id}
-                      title={block.title}
-                      html={c.html}
-                      examples={c.examples}
-                      guide={c.guide}
-                    />
+                    <div className="ml-auto flex items-center">
+                      <EditBlockDialog
+                        id={block.id}
+                        lessonId={id}
+                        title={block.title}
+                        html={c.html}
+                        examples={c.examples}
+                        guide={c.guide}
+                      />
+                      <form action={deleteBlock}>
+                        <input type="hidden" name="id" value={block.id} />
+                        <input type="hidden" name="lessonId" value={id} />
+                        <Button type="submit" size="icon" variant="ghost" className="size-7 text-destructive" aria-label="delete">
+                          ✕
+                        </Button>
+                      </form>
+                    </div>
                   )}
                 </div>
 
@@ -276,6 +286,8 @@ export default async function LessonPage({
               </section>
             );
           })}
+
+          {isStaff && <AddBlockDialog lessonId={id} />}
 
           {/* Student: mark the lesson complete (drives the garden + async unlock) */}
           {profile.role === "student" && (

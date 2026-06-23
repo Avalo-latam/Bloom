@@ -77,7 +77,8 @@
     "addStudent": "Agregar alumno",
     "scheduleClass": "Agendar clase",
     "openCurriculum": "Abrir currículo",
-    "reviewPayments": "Revisar pagos"
+    "reviewPayments": "Revisar pagos",
+    "todo": "Para hacer"
   },
   "landing": {
     "loginCta": "Ingresar",
