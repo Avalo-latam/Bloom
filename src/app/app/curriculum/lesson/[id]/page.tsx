@@ -11,6 +11,7 @@ import { BLOCK_META, type BlockKind, type BlockContent } from "@/lib/blocks";
 import { YouTubeEmbed } from "@/components/embeds/youtube";
 import { QuizLauncher } from "@/components/quiz/quiz-launcher";
 import { PhoneticsPractice } from "@/components/app/phonetics-practice";
+import { EditLessonDialog, EditBlockDialog } from "@/components/app/curriculum-edit";
 import type { Quiz } from "@/lib/quiz";
 import type { LevelCode } from "@/lib/levels";
 
@@ -105,7 +106,12 @@ export default async function LessonPage({
             {unit?.title}
           </div>
         )}
-        <h1 className="font-heading text-3xl font-bold">{lesson.title}</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="font-heading text-3xl font-bold">{lesson.title}</h1>
+          {isStaff && (
+            <EditLessonDialog id={id} title={lesson.title} objective={lesson.objective} />
+          )}
+        </div>
         {lesson.objective && (
           <p className="mt-2 text-muted-foreground">{lesson.objective}</p>
         )}
@@ -135,6 +141,16 @@ export default async function LessonPage({
                     <Icon className="size-4.5 text-foreground/70" />
                   </span>
                   <h2 className="font-heading text-lg font-bold">{block.title}</h2>
+                  {isStaff && (
+                    <EditBlockDialog
+                      id={block.id}
+                      lessonId={id}
+                      title={block.title}
+                      html={c.html}
+                      examples={c.examples}
+                      guide={c.guide}
+                    />
+                  )}
                 </div>
 
                 {/* Teacher-only choreography note */}

@@ -144,3 +144,20 @@ export const IcPlus = ({ className }: P) => (
     <path d="M12 6v12M6 12h12" />
   </S>
 );
+
+/** Resource library — books on a shelf. */
+export const IcLibrary = ({ className }: P) => (
+  <S className={className}>
+    <path d="M5 5.5h3v13H5zM10 5.5h3v13h-3z" />
+    <path d="M15.5 6.2l3 .8-3 12-2.6-.7" />
+    <path d="M5 18.5h13" />
+  </S>
+);
+
+/** Messages — chat bubble with a leaf. */
+export const IcChat = ({ className }: P) => (
+  <S className={className}>
+    <path d="M5 6.5h14a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5h-7l-4 3v-3H5A1.5 1.5 0 0 1 3.5 15V8A1.5 1.5 0 0 1 5 6.5Z" />
+    <path d="M9 11h6M9 13.5h3" />
+  </S>
+);

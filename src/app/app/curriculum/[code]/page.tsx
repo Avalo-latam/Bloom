@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/app/page-header";
 import { LevelBadge } from "@/components/level-badge";
 import { ReleaseLessonDialog } from "@/components/app/release-lesson-dialog";
+import { EditUnitDialog } from "@/components/app/curriculum-edit";
 import { Button } from "@/components/ui/button";
 import { LEVEL_CODES, LevelCode } from "@/lib/levels";
 import { cn } from "@/lib/utils";
@@ -108,6 +109,7 @@ export default async function LevelPage({
                 {i + 1}
               </span>
               {unit.title}
+              {isStaff && <EditUnitDialog id={unit.id} title={unit.title} />}
             </h2>
             <div className="overflow-hidden rounded-2xl glass-card">
               {(lessonsByUnit.get(unit.id) ?? []).map((lesson, idx, arr) => {

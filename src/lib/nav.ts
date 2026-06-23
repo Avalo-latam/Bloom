@@ -9,6 +9,8 @@ import {
   IcProgress,
   IcWallet,
   IcSettings,
+  IcLibrary,
+  IcChat,
 } from "@/components/brand/icons";
 import type { UserRole } from "@/lib/roles";
 
@@ -29,6 +31,8 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/app", labelKey: "dashboard", icon: IcHome, roles: ALL },
   { href: "/app/students", labelKey: "students", icon: IcStudents, roles: STAFF },
   { href: "/app/curriculum", labelKey: "curriculum", icon: IcBook, roles: ALL },
+  { href: "/app/resources", labelKey: "resources", icon: IcLibrary, roles: ALL },
+  { href: "/app/messages", labelKey: "messages", icon: IcChat, roles: ALL },
   { href: "/app/schedule", labelKey: "schedule", icon: IcCalendar, roles: ALL },
   { href: "/app/homework", labelKey: "homework", icon: IcHomework, roles: ALL },
   { href: "/app/exams", labelKey: "exams", icon: IcExam, roles: ALL },
